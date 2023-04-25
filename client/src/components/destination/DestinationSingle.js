@@ -72,7 +72,7 @@ const DestinationIndex = () => {
   // ! Get Map
   useEffect(() => {
     const getMap = async () => {
-      console.log(process.env.REACT_APP_API_KEY)
+      console.log(process.env.REACT_APP_API_KEY) // logging
       if (!destination) return
       try {
         mapboxgl.accessToken = process.env.REACT_APP_API_KEY
