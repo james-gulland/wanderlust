@@ -27,6 +27,7 @@ const Home = () => {
     isAdmin: false,
   })
 
+  // setting states for Home
   const [error, setError] = useState('')
   const [destinations, setDestinations] = useState([])
   const [filteredDestinations, setFilteredDestinations] = useState([])
