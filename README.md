@@ -96,6 +96,124 @@ For our minimum product, we all agreed we wanted the basic abilities of being ab
 
 Stretched goals for post-MVP would be to have a nice slide-show mechanic that was smooth when scrolling imagery, a 7-day weather forecast displayed on the single destination page, have the login/register routes available on all pages via a modal (rather than separate routes as listed above), multiple images per destination, 100+ destinations of content to make the site feel authentic and useful, and possibly a search (although we already had a lot of work cut out for us ahead!)
 
+<h2>Build Process</h2>
+
+Initially, we spent the first 2 days together in our group of three developing the core of the server-side work.  The plan was to later split and specialise a little more, but we wanted to work together on the initial stages just so we were all aligned on how it was put together.  We took turns in taking the lead on coding, whilst the other 2 contributed through the steps.  
+
+I really enjoyed this part of the project the most as it felt like we all got on really well with each other and we all contributed well to building the foundations of the product.  This part of the project was incredibly satisfying as it really solidified all the learning we had done over the past few weeks and helped to connect the dots.
+
+We tackled the tasks by breaking them down into little objectives as listed below:
+
+**Step 1:  get the server up and running**
+
+First things first, we created our development environment, installed the necessary packages using npm, and then spun up the server using Express and then connected to MongoDB.  We made sure the server was listening in for requests and then processing them through the middleware.  This was a simple process.  Once we could log this was working correctly, we moved onto the next stage.
+
+**Step 2: setting up the schemas/models for the data**
+
+Secondly, we then defined the Mongoose schemas for the database, which set the blueprint for all the data it will contain.  In our instance, we had a ‘destinationSchema’ which contained all the necessary fields that we required from the wireframe / data diagrams we did previously, along with the associated embedded relationship schemas, in our case the ‘reviewSchema’, that was nested inside the ‘Destinations schema’.  
+
+We repeated a similar process when defining the ‘User’ schema, which would house our user information for login, as well as establish whether they were admin or not.  Regular users could register and login, and add reviews, and admin could do all of that, but also add destinations (which regular users couldn't).  
+
+![My Image](client/src/components/images/image8.png)
+
+Once this was done, we then created the models for the database and moved onto the next step.
+
+**Step 3: setting up a test query**
+
+Once we were happy with the way the database was set up and structured, we then moved onto testing this out a little with a small amount of data to ensure it was working as intended.  We created a simple route to get all data from the database and for it to then return the destination data back to the client.  This route did not require any secure routes, so would be easy and quick to test with. 
+
+We initially started by creating a very basic seeds file populated with 3 dummy entries (based on the schema structure we defined previously) and then made sure it populated in the database correctly.  Then we created the basic config for the router to get all destinations, and then created the controller to process and return the data once the request was made.
+
+To our surprise, this all came together very quickly in the same day, and was immensely satisfying when we used Insomnia for the first time to retrieve our first destination data!  A small but massive win for the group and we all loved it!
+
+**Step 4: building out the controllers and routes**
+
+Once we had the basic route working as intended, we then quickly expanded out the routes and controllers, providing the ability to request a single destination according to the destination ID, as well as setting up the Users and their permissions, so that we could add reviews and update destination data.
+
+![My Image](client/src/components/images/image4.png)
+
+This also meant we had to add secure routes to the config to ensure users had the appropriate authorisation via a token stored in local storage.
+
+![My Image](client/src/components/images/image17.png)
+
+**Step 5: dividing the conquering the workloads**
+
+At this point, we had spent 2 days working together as a group, and built out the backbone of the functionality for the site.  We then decided to divide and conquer the work a little so as to make the best use of our time, but we were also very open to pairing on certain complex items, which I got heavily involved with also.
+
+Ross went on to define the admin and user routes a little more, including the ability to add, update and delete destinations for admin users, and also the ability to add, update and delete reviews for all users, along with the associated error states if the requests were unsuccessful. 
+
+I then focused more on spinning up the React app from scratch, and then started creating the necessary routes for the homepage and the destination index page and their associated JSX.  I also managed to successfully retrieve the destination data using Axios GET request and then setting the destination data into a useState React hook to be manipulated on the front-end.  I also designed the front-end and found various libraries online that I really liked, including a slideshow component, which was used as the homepage centrepiece:
+
+![My Image](client/src/components/images/image5.gif)
+
+Rosie helped out creating the UI for the login and registration modals and we paired on making sure the tokens were getting stored in the local storage.
+
+At this point, we managed to create the basics of the site, and now it was all about bringing it together.
+
+**Step 6: building out the UI using functional JavaScript, React hooks, and a healthy amount of SASS.**
+
+I continued to work on the UI components on the destination index and single destination pages, and then paired with Ross on retrieving the user, destination and review data from the controllers he created and then populating in the front-end.  I developed a mobile responsive grid using the ‘display: grid’ functionality that was new to me, and experimented with using aspect ratio and object-fit and position SASS properties to help align all the content, including the imagery.  
+
+Here is a screenshot of Ross and I pairing together, building a mobile-first grid component that ingested the destination data, checking the React components to ensure the data is coming through successfully:
+
+![My Image](client/src/components/images/image7.png)
+
+Styling tweaks and mobile responsiveness progress on the grid:
+
+![My Image](client/src/components/images/image3.gif)
+
+One of the hardest elements we found of the project was ensuring that the correct states were being used correctly in React, and the useEffect hooks were rendering the page at the right times.  We managed to get around this by doing plenty of console logging at each step, checking the React components plug-in in Chrome dev tools.
+
+**Step 7: filling the content**
+
+We now had a good foundation of the product, including an awesome mobile-responsive UI, but we were sorely lacking in terms of content.  So the 3 of us spent almost the extent of 1 full day gathering data for over 100+ location data, with a mix of cold, mild, warm and hot destinations!
+
+We had a bit of a production line where Rosie and I would help getting the images for each location (4 of each) and then uploading to Cloudinary, and Ross would create the destinations themselves in the seeds file and start populating with location data and other destination data.  We used Chat-GPT to help us create the content for descriptions and features of each destination, where it would generate recommended sight-seeing, activities, and restaurants in the area, which we then copy and pasted into the seeds file!
+
+It was the most laborious part of the project, but we figured it was worth spending time making sure we had enough content to populate on the site, as the success of the product hinges on there being a great selection of destinations to work with, and let the content do the singing.
+
+**Step 8: completing the finishing touches**
+
+A lot of the hard work had been done now, and it was just a case of putting the finishing touches to the UI together, and getting the details of the styling and branding in place.
+
+Ross and Rosie paired together on the UI for the admin pages to get them up-and-running, whereas I focused on the single destination pages, and added all the necessary components for this page.
+
+I worked on integrating the map from mapbox API, and also an API from Open Meteo, to show a 7-day weather forecast.  I had a lot of fun creating the functional JavaScript for this work, and came together very quickly for both.  I wasn’t sure what issues I would run into with their APIs, but fortunately, it was all very plain sailing and easier than expected!
+
+This is the code I did for showing the weather forecast, which I was proud of:
+
+1) Getting the weather data from the Meteo API, feeding in the longitude and latitude values from our destination data:
+
+![My Image](client/src/components/images/image11.png)
+
+2) The JSX showing the component on the page:
+
+![My Image](client/src/components/images/image1.png)
+
+3) The functions necessary to show the correct data to the JSX:
+
+![My Image](client/src/components/images/image12.png)
+![My Image](client/src/components/images/image14.png)
+
+**Step 9: Wrapping up and getting it ready for the showcase demo**
+
+On the last day, I was very firm to the group that we were not going to do any major deployments to the codebase and instead tweaks to smaller details were OK.  We did a lot of fine-tuning and the presentation went really well.
+
+<h2>End result</h2>
+
+![My Image](client/src/components/images/image20.png)
+
+![My Image](client/src/components/images/image16.png)
+
+![My Image](client/src/components/images/image2.png)
+
+![My Image](client/src/components/images/image18.png)
+
+
+
+
+
+
 
 
 
