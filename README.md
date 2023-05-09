@@ -41,6 +41,7 @@ This project was working in a group with 3 members (including myself) with a dur
 - Insomnia
 
 <h2>Brief</h2>
+
 - Build a full-stack application by making your own backend and your own front-end
 - Use an Express API to serve your data from a Mongo database
 - Consume your API with a separate front-end built with React
