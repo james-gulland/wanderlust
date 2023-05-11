@@ -20,16 +20,18 @@
   }
 
   #prev-next-controls {
-    top: auto;
-    bottom: 40%;
-  }
-  #btn-previous {
-    left: 0;
+    display: none;
   }
 
-  #btn-next {
-    right: 0;
+  .emoji {
+    bottom: 20.5%
   }
+
+  .btn {
+    bottom: 16%
+  }
+
+
 
   #grid-container, #common, #attractions, #reviews {
     display: block;
