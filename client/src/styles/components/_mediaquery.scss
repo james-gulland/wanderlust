@@ -19,6 +19,14 @@
     font-size: 3em;
   }
 
+  #btn-previous {
+    left: 0;
+  }
+
+  #btn-next {
+    right: 0;
+  }
+
   #grid-container, #common, #attractions, #reviews {
     display: block;
     width: 100%;
