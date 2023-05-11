@@ -11,6 +11,10 @@
     padding-left: 0.5em;
   }
 
+  .homepage-heading {
+    padding: 0 1em;
+  }
+
   #hero h1 {
     font-size: 3em;
   }
@@ -29,15 +33,6 @@
   .slide-wrapper {
       height: 100%;
   }
-
-  #btn-next {
-    bottom: 1.5%;
-  }
-  
-  #btn-previous {
-    bottom: 1.5%;
-  }
- 
 }
 
 @media (max-width: 1000px){
